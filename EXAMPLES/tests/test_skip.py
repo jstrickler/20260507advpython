@@ -16,7 +16,14 @@ def test_two():
     sys.platform != 'win32', 
     reason="only implemented on Windows"
 )
-def test_three():
+def test_three_windows():
+    assert 1
+
+@pytest.mark.skipif(
+    sys.platform != 'darwin', 
+    reason="only implemented on Mac"
+)
+def test_three_mac():
     assert 1
 
 

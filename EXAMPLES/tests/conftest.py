@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from pytest import fixture
 
+# from other_file import *
+
 @fixture
 def common_fixture():  # user-defined fixture
     return ['alpha', 'beta', 'gamma']

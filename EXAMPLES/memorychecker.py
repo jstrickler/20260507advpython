@@ -9,12 +9,17 @@ class MemoryChecker():
     they will return current memory use.
     """
 
-    def __init__(self):
-        self.process = psutil.Process(os.getpid())  # Get PID of current process
+    def __init__(self, pid):
+        self.process = psutil.Process()  # Get PID of current process
 
     def __call__(self):
         return self.process.memory_info().rss  # Return memory use for PID
 
 if __name__ == '__main__':
-    mc = MemoryChecker()
+    process_id = os.getpid()
+    mc = MemoryChecker(process_id)   # mc is a "smart function"
     print(mc())  # can call at any time to get current memory use
+    big_list = [1] * 100_000_000
+    print(mc())
+    del big_list
+    print(mc())
